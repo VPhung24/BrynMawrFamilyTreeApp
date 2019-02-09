@@ -38,7 +38,7 @@ def hello_world():
         # t = "" + str(d[name])
         # keys = list(d.keys())
         d.close()
-        return render_template("index.html", rosebud = "")
+        return render_template("index.html", rosebud = "Submitted! Thank you!")
     return render_template("index.html")
 
 @app.route("/tree", methods=["GET","POST"])
