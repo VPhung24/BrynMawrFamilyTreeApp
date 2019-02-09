@@ -1,0 +1,49 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+  <body style="background-color: LavenderBlush;">
+
+    <main role="main" class="jumbotron text-center" style="background-color: LavenderBlush">
+
+      <!--<section class="jumbotron text-center">-->
+
+        <div class="container">
+            <img src="../static/images/roses.png" alt="Roses" class="img-fluid">
+          <h1 class="jumbotron-heading">Buds and Roses</h1>
+          <p class="lead text-muted">Bryn Mawr College</p>
+          <p>
+            <form method="post" class="form-inline">
+
+            <div class="input-group mb-2 mr-sm-2">
+                <label class="sr-only" for="inlineFormInputEmail">Name</label>
+              <input type="text" class="form-control" placeholder="Your email" aria-label="Your email" aria-describedby="basic-addon2" name="nameInput" value = "{{request.form.nameInput}}">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">@brynmawr.edu</span>
+              </div>
+            </div>
+                        <div class="input-group mb-2 mr-sm-2">
+              <input type="text" class="form-control" placeholder="Buds email" aria-label="Buds email" aria-describedby="basic-addon2" name="budInput"  value ="{{request.form.budInput}}">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">@brynmawr.edu</span>
+              </div>
+            </div>
+                        <div class="input-group mb-2 mr-sm-2">
+              <input type="text" class="form-control" placeholder="Roses email" aria-label="Roses email" aria-describedby="basic-addon2" name="roseInput" value = "{{request.form.roseInput}}">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">@brynmawr.edu</span>
+              </div>
+            </div>
+            <!--<div class="input-group mb-2 mr-sm-2">-->
+            <input class="btn btn-light mb-2" id="submitkey" type="submit" value="Submit">
+            <!--</div>-->
+            </form>
+          </p>
+        </div>
+      <!--</section>-->
+
+            {{ rosebud }}
+
+    </main>
+
+{% endblock %}
