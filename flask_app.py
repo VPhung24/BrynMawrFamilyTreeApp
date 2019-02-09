@@ -50,28 +50,28 @@ def treeeee():
         grandmother = []
         coparents = []
         hasfamily = False
+        no_results_yet = False
         # keys = list(d.keys())
 
         if name in d:
-            no_results_yet = False
             hasfamily = True
             roses2 = list(d[name]["roses"].keys())
             buds2 = list(d[name]["buds"].keys())
 
             for i in roses2:
-                if i in d:
+                if i in d and i != name:
                     grandmother += list(d[i]["roses"].keys())
 
             for i in buds2:
-                if i in d:
+                if i in d and i != name:
                     coparents += list(d[i]["roses"].keys())
 
-            bbuds = "Your rosebuds are " + str(roses2)
-            rroses = "Your buds are " + str(buds2)
-            ggrand = "Your grandparents are " + str(grandmother)
-            coparent = "Your coparents are " + str(coparents)
+            bbuds = "Your rosebuds are " + ", ".join(roses2)
+            rroses = "Your buds are " + ", ".join(buds2)
+            ggrand = "Your grandparents are " + ", ".join(grandmother)
+            coparent = "Your coparents are " + ", ".join(coparents)
             return render_template("mytree.html", bbuds = bbuds, roses = rroses, ggrand = ggrand, coparent = coparent, hasfamily = hasfamily, no_results_yet = no_results_yet)
         else:
-            bbuds = "No current fam"
-            return render_template("mytree.html", bbuds = bbuds, no_results_yet = no_results_yet)
+            notThere = False
+            return render_template("mytree.html", notThere = notThere, no_results_yet = no_results_yet)
     return render_template("mytree.html", no_results_yet = no_results_yet)
