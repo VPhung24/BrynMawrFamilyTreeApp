@@ -18,7 +18,7 @@ app.config["DEBUG"] = True
 def hello_world():
     if request.method == "POST":
         d = shelve.open('test_shelf.db', writeback = True)
-        length = len(list(d.keys()))
+        # length = len(list(d.keys()))
         name = request.form['nameInput']
         bud = request.form['budInput']
         rose = request.form['roseInput']
@@ -35,36 +35,43 @@ def hello_world():
                 d[name]["roses"][rose] = 0
             if bud != "":
                 d[name]["buds"][bud] = 0
-        t = "" + str(d[name])
+        # t = "" + str(d[name])
         # keys = list(d.keys())
         d.close()
-        return render_template("index.html", rosebud = t)
+        return render_template("index.html", rosebud = "")
     return render_template("index.html")
 
 @app.route("/tree", methods=["GET","POST"])
 def treeeee():
+    no_results_yet = True
     if request.method == "POST":
         name = request.form['nameInput2']
         d = shelve.open('test_shelf.db')
-        roses2 = list(d[name]["roses"].keys())
-        buds2 = list(d[name]["buds"].keys())
         grandmother = []
         coparents = []
+        hasfamily = False
         # keys = list(d.keys())
 
-        for i in roses2:
-            if i in d:
-                grandmother += list(d[i]["roses"].keys())
-
-        for i in buds2:
-            if i in d:
-                coparents += list(d[i]["roses"].keys())
-
         if name in d:
-            t = "your rosebuds are " + str(roses2) + " and your buds are " + str(buds2) + "! Your grandparents are " + str(grandmother) + " and your coparents are " + str(coparents)
-        else:
-            t = "No current fam"
+            no_results_yet = False
+            hasfamily = True
+            roses2 = list(d[name]["roses"].keys())
+            buds2 = list(d[name]["buds"].keys())
 
-        # t = str(keys)
-        return render_template("mytree.html", HelloWorld = t)
-    return render_template("mytree.html")
+            for i in roses2:
+                if i in d:
+                    grandmother += list(d[i]["roses"].keys())
+
+            for i in buds2:
+                if i in d:
+                    coparents += list(d[i]["roses"].keys())
+
+            bbuds = "Your rosebuds are " + str(roses2)
+            rroses = "Your buds are " + str(buds2)
+            ggrand = "Your grandparents are " + str(grandmother)
+            coparent = "Your coparents are " + str(coparents)
+            return render_template("mytree.html", bbuds = bbuds, roses = rroses, ggrand = ggrand, coparent = coparent, hasfamily = hasfamily, no_results_yet = no_results_yet)
+        else:
+            bbuds = "No current fam"
+            return render_template("mytree.html", bbuds = bbuds, no_results_yet = no_results_yet)
+    return render_template("mytree.html", no_results_yet = no_results_yet)

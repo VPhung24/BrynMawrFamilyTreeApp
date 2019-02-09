@@ -6,17 +6,15 @@
 
     <main role="main" class="jumbotron text-center" style="background-color: LavenderBlush">
 
-      <!--<section class="jumbotron text-center">-->
-
         <div class="container">
             <img src="../static/images/roses.png" alt="Roses" class="img-fluid">
           <h1 class="jumbotron-heading">Buds and Roses</h1>
           <p class="lead text-muted">Bryn Mawr College</p>
+          <br>
           <p>
             <form method="post" class="form-inline">
-
             <div class="input-group mb-2 mr-sm-2">
-                <label class="sr-only" for="inlineFormInputEmail">Name</label>
+                <label class="sr-only" for="inlineFormInputEmail">Your Email</label>
               <input type="text" class="form-control" placeholder="Your email" aria-label="Your email" aria-describedby="basic-addon2" name="nameInput" value = "{{request.form.nameInput}}">
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">@brynmawr.edu</span>
@@ -34,16 +32,10 @@
                 <span class="input-group-text" id="basic-addon2">@brynmawr.edu</span>
               </div>
             </div>
-            <!--<div class="input-group mb-2 mr-sm-2">-->
             <input class="btn btn-light mb-2" id="submitkey" type="submit" value="Submit">
-            <!--</div>-->
             </form>
           </p>
         </div>
-      <!--</section>-->
-
-            {{ rosebud }}
-
+        {{ rosebud }}
     </main>
-
 {% endblock %}
